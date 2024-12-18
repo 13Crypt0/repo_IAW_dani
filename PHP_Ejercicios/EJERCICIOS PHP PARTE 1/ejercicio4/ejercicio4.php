@@ -10,3 +10,4 @@
         echo "<p>Minutos ($numero_minutos) a segundos: $calculo_minutos</p>\n";
     // Para segundos
     echo "<p>Segundos ($numero_segundos) a segundos: $numero_segundos</p>\n";
+?>
