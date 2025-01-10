@@ -71,12 +71,18 @@
         $edadOk = true;
     }
 
-// Si todos los valores recogidos del formulario están OK, 
-// realizar las accionas que se pida en el ejercicio
+    // Si todos los valores recogidos del formulario están OK, 
+    // realizar las accionas que se pida en el ejercicio
 
-// ...
+    $edad = (int)$edad;
 
-?>
-  <p><a href="ejercicio6_formulario.php">Volver al formulario.</a></p>
-</body>
-</html>
+    if (esMayorDeEdad($edad)) {
+        echo "<p>$nombre, eres mayor de edad, tienes $edad</p>\n";
+    } else {
+        echo "<p>$nombre, eres menor de edad, tienes $edad</p>\n";
+    }
+
+    ?>
+        <p><a href="ejercicio6_formulario.php">Volver al formulario.</a></p>
+    </body>
+    </html>
