@@ -35,18 +35,18 @@
         <input type="radio" name="estado_civil" value="Separado/a legalmente" required> Separado/a legalmente
     </label></p>
     <p><label>Aficiones: 
-        <input type="checkbox" name="aficiones[]" value="leer"> Leer libros
-        <input type="checkbox" name="aficiones[]" value="musica"> Escuchar Música
-        <input type="checkbox" name="aficiones[]" value="pelis_series"> Ver películas y series <br>
-        <input type="checkbox" name="aficiones[]" value="videojuegos"> Jugar a videojuegos 
-        <input type="checkbox" name="aficiones[]" value="deporte"> Practicar deporte
-        <input type="checkbox" name="aficiones[]" value="instrumento"> Tocar un instrumento musical <br>
-        <input type="checkbox" name="aficiones[]" value="manualidades"> Hacer manualidades
-        <input type="checkbox" name="aficiones[]" value="cocinar"> Cocinar
-        <input type="checkbox" name="aficiones[]" value="viajar"> Viajar <br>
-        <input type="checkbox" name="aficiones[]" value="podcast"> Escuchar Podcast
-        <input type="checkbox" name="aficiones[]" value="meditar"> Meditar
-        <input type="checkbox" name="aficiones[]" value="gimnasio"> Ir al gimnasio
+        <input type="checkbox" name="aficiones[]" value="Leer librosr"> Leer libros
+        <input type="checkbox" name="aficiones[]" value="Escuchar Musica"> Escuchar Música
+        <input type="checkbox" name="aficiones[]" value="Ver peliculas y series"> Ver películas y series <br>
+        <input type="checkbox" name="aficiones[]" value="Jugar a videojuegos"> Jugar a videojuegos 
+        <input type="checkbox" name="aficiones[]" value="Practicar deporte"> Practicar deporte
+        <input type="checkbox" name="aficiones[]" value="Tocar un instrumento musical"> Tocar un instrumento musical <br>
+        <input type="checkbox" name="aficiones[]" value="Hacer manualidades"> Hacer manualidades
+        <input type="checkbox" name="aficiones[]" value="Cocinar"> Cocinar
+        <input type="checkbox" name="aficiones[]" value="Viajar"> Viajar <br>
+        <input type="checkbox" name="aficiones[]" value="Escuchar Podcast"> Escuchar Podcast
+        <input type="checkbox" name="aficiones[]" value="Meditar"> Meditar
+        <input type="checkbox" name="aficiones[]" value="Ir al gimnasio"> Ir al gimnasio
     </label></p>
 
 

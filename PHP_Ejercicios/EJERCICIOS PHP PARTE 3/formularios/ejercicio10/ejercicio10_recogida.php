@@ -37,11 +37,6 @@ function recoge($key, $type = "")
     return $tmp;
 }
 
-// Otras funciones si es necesario
-
-// ...
-
-
 // Recoger valores del formulario con la funcion recoge()
 
 $nombre = recoge('nombre');
@@ -51,8 +46,8 @@ $edad = recoge('edad');
 $peso = recoge('peso');
 $sexo = recoge('sexo');
 $estado_civil = recoge('estado_civil');
-$aficiones = recoge('aficiones[]');
-$aficiones = (array)$aficiones;
+$aficiones = recoge('aficiones', []);
+
 
 // Hacer las comprobaciones oportunas de los valores y mostrar avisos si los
 // valores son vacíos, si no son del tipo correcto, si no están en rango, etc.
@@ -60,18 +55,90 @@ $aficiones = (array)$aficiones;
 $nombre_Ok = false;
 $apellido_1_Ok = false;
 $apellido_2_Ok = false;
+$peso_Ok = false;
+$sexo_Ok = false;
+$estado_civil_Ok = false;
+
 if (!is_string($nombre)) {
-    echo "<p>Valor incorrecto</p>\n";
+    echo "<p>Nombre: Valor incorrecto</p>\n";
+} elseif (is_numeric($nombre)) {
+    echo "<p>Nombre no puede ser un numero</p>\n";
+} elseif ($nombre == "") {
+    echo "<p>Introduce tu nombre</p>\n";
 } else {
     $nombre_Ok = true;
 }
 
+if (!is_string($apellido_1)) {
+    echo "<p>1º Apellido: Valor incorrecto</p>\n";
+} elseif (is_numeric($apellido_1)) {
+    echo "<p>1º Apellido no puede ser un numero</p>\n";
+} elseif ($apellido_1 == "") {
+    echo "<p>Introduce tu 1º Apellido</p>\n";
+} else {
+    $apellido_1_Ok = true;
+}
+
+if (!is_string($apellido_2)) {
+    echo "<p>2º Apellido: Valor incorrecto</p>\n";
+} elseif (is_numeric($apellido_2)) {
+    echo "<p>2º Apellido no puede ser un numero</p>\n";
+} else {
+    $apellido_2_Ok = true;
+}
+
+if (!is_numeric($peso)) {
+    echo "<p>Peso solo acepta valores numericos</p><\n";
+} elseif ($peso < 0) {
+    echo "<p>No puedes pesar menos de 0 kg</p>\n";
+} else {
+    $peso_Ok = true;
+}
+
+if ($sexo == "") {
+    echo "<p>Introduce tu sexo</p>\n";
+} else {
+    $sexo_Ok = true;
+}
+
+if ($estado_civil == "") {
+    echo "<p>Introduce tu estado civil</p>\n";
+} else {
+    $estado_civil_Ok = true;
+}
 
 // Si todos los valores recogidos del formulario están OK, 
 // realizar las accionas que se pida en el ejercicio
 
-// ...
+if ($nombre_Ok) {
+    echo "<p>Tu nombre es: <b>$nombre</b></p>\n";
+}
 
+if ($apellido_1_Ok) {
+    echo "<p>Tu 1º Apellido es: <b>$apellido_1</b></p>\n";
+}
+
+if ($apellido_2_Ok && $apellido_2 != "") {
+    echo "<p>Tu 2º Apellido es: <b>$apellido_2</b></p>\n";
+}
+
+echo "<p>Tienes: <b>$edad</b></p>\n";
+
+if ($peso_Ok) {
+    echo "<p>Pesas: <b>$peso kg</b></p>\n";
+}
+
+if ($sexo_Ok) {
+    echo "<p>Tu sexo es: <b>$sexo</b></p>\n";
+}
+
+if ($estado_civil_Ok) {
+    echo "<p>Tu estado civil es: <b>$estado_civil</b></p>\n";
+}
+
+foreach ($aficiones as $value) {
+    echo "<p>Afición: <b>$value</b></p>\n";
+}
 ?>
   <p><a href="ejercicio10_formulario.php">Volver al formulario.</a></p>
 </body>
