@@ -24,5 +24,6 @@ function recoge($key, $type = "")
 }
 
 $texto = recoge("texto");
+$_SESSION["texto"] = $texto;
 
-header("Location:ejercicio2_recogida.php");
+header("Location:ejercicio2_formulario.php");

@@ -1,5 +1,5 @@
 <?php
-session_name("ejercicio2");
+session_name("ejercicio3");
 session_start();
 
 function recoge($key, $type = "")
@@ -23,7 +23,16 @@ function recoge($key, $type = "")
     return $tmp;
 }
 
-$texto = recoge("texto");
-$_SESSION["texto"] = $texto;
+$palabra = recoge("palabra");
 
-header("Location:ejercicio2_formulario.php");
+if (!ctype_upper($palabra)) {
+    $_SESSION["mensaje"] = "Escribe una sola palabra en mayusculas";
+} elseif ($palabra == "") {
+    $_SESSION["mensaje"] = "Ningun valor introducido";
+} else {
+    unset($_SESSION["mensaje"]);
+}
+ 
+$_SESSION["palabra"] = $palabra;
+
+header("Location: ejercicio3_formulario.php");

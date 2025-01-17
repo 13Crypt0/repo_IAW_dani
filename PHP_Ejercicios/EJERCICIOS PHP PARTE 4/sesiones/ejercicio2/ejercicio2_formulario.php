@@ -1,11 +1,4 @@
 <?php
-/**
- * Sesiones (1) 02 - sesiones-1-02-1.php
- *
- * @author Escriba aquí su nombre
- *
- */
-
 session_name("ejercicio2");
 session_start();
 
@@ -29,7 +22,7 @@ session_start();
 <?php
 
 if (isset($_SESSION["texto"])) {
-    echo "<p>El texto es: <b>$_SESSION[texto]</b></p>\n";
+  echo "<p>El texto es: <b>$_SESSION[texto]</b></p>\n";
 }
 ?>
 

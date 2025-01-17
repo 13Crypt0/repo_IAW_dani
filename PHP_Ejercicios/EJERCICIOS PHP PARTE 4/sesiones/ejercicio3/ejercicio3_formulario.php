@@ -23,16 +23,13 @@ session_start();
   <form action="ejercicio3_recogida.php" method="get">
 
 <?php
-if ($_SESSION["error"] == "correcto") {
-    echo "<p>Esta todo correcto</p>\n";
+
+if (isset($_SESSION["mensaje"])) {
+  echo "<p style='color:red' >$_SESSION[mensaje]</p>\n";
 } else {
-    echo "<p>Se introducieron caracteres en minúscula</p>\n";
+  echo "<p>El texto es: <b>" . $_SESSION['palabra'] . "</b></p>\n";
 }
 
-    if (isset($_SESSION["palabra"])) {
-    echo "<p>El texto es: </p>";
-    echo implode (" ", $_SESSION["palabra"]);
-}
 
 
 print "\n";

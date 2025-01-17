@@ -1,5 +1,6 @@
 <?php
-session_name("ejercicio3");
+
+session_name("ejercicio4");
 session_start();
 
 function recoge($key, $type = "")
@@ -23,20 +24,26 @@ function recoge($key, $type = "")
     return $tmp;
 }
 
-$palabra = recoge("palabra");
-$palabra = (array)$palabra;
+$palabra_mayus = recoge("mayusculas");
 
-function comprobar($texto) {
-    if ($texto == strtoupper($texto)) {
-        $_SESSION["error"] = "correcto";
+    if (!ctype_upper($palabra_mayus)) {
+        $_SESSION["mensaje_mayus"] = "Escribe una sola palabra en mayuscula";
+    } elseif ($palabra_mayus == "") {
+        $_SESSION["mensaje_mayus"] = "No has introducido ningun valor";
     } else
-    $_SESSION["error"] = "incorrecto";
-}
+        unset($_SESSION["mensaje_mayus"]);
 
-foreach ($palabra as $value) {
-      comprobar($value);
-}
+$palabra_minus = recoge("minusculas");
 
-$_SESSION["palabra"] = $palabra;
+    if (!ctype_lower($palabra_minus)) {
+        $_SESSION["mensaje_minus"] = "Escribe una sola palabra en minuscula";
+    } elseif ($palabra_minus == "") {
+        $_SESSION["mensaje_minus"] = "No has introducido ningun valor";
+    } else
+        unset($_SESSION["mensaje_minus"]);
 
-header("Location:ejercicio3_formulario.php");
+
+$_SESSION["palabra_mayus"] = $palabra_mayus;
+$_SESSION["palabra_minus"] = $palabra_minus;
+
+header("Location: ejercicio4_formulario.php");
