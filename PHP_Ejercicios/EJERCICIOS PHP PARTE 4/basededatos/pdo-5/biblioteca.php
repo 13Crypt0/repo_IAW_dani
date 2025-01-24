@@ -1,12 +1,14 @@
 <?php
 /**
  *
- * @author Escriba aquí su nombre
+ * @author Daniel Martinez Colomer
  */
 
 // Constantes configurables por el programador de la aplicación
 
-
+define("tablaPersonas", "personas");
+$cfg["tablaPersonasTamNombre"]    = 40;
+$cfg["tablaPersonasTamApellidos"] = 60;
 
 // Variables configurables por el administrador de la aplicación
 

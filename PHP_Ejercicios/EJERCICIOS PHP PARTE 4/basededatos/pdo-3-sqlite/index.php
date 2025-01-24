@@ -8,7 +8,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>SQLite (3). PDO. Ejercicios (bases de datos). Escriba aquí su nombre</title>
+  <title>SQLite (3). PDO. Ejercicios (bases de datos). Daniel Martinez Colomer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mclibre-php-proyectos.css" title="Color">
 </head>

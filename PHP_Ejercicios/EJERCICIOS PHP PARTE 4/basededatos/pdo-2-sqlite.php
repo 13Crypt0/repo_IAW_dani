@@ -113,7 +113,7 @@ function muestraRegistros()
       print "<p><strong>Registro(s) obtenido(s)</strong></p>\n";
       print "<ul>\n";
       foreach ($resultado as $registro) {
-          print "<li>$registro[nombre] - $registro[apellidos]</li>\n";
+          print "<li>$registro[id] - $registro[nombre] - $registro[apellidos]</li>\n";
       }
       print "</ul>\n";
       print "\n";
