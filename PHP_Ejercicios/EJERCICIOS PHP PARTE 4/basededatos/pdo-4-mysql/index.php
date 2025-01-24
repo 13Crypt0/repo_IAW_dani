@@ -19,7 +19,8 @@
   <main>
 <?php
 
-print "  <p class=\"aviso\">Ejercicio incompleto</p>\n";
+$pdo = conectaDb();
+
 
 ?>
   </main>

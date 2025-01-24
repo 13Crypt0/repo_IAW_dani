@@ -6,11 +6,7 @@
 
 // Variables configurables por el administrador de la aplicación
 
-
-
-// Variables configurables por el programador de la aplicación
-
-
+include "config.php";
 
 // FUNCIONES ESPECÍFICAS DE LA BASE DE DATOS MYSQL
 
@@ -18,7 +14,20 @@
 
 function conectaDb()
 {
-    print "  <p class=\"aviso\">Ejercicio incompleto</p>\n";
+    global $cfg;
+
+    try {
+        $tmp = new PDO("mysql:host=$cfg[mysqlHost];dbname=$cfg[mysqlDatabase];charset=utf8mb4", $cfg["mysqlUser"], $cfg["mysqlPassword"]);
+    } catch (PDOException $e) {
+        $tmp = new PDO("mysql:host=$cfg[mysqlHost];charset=utf8mb4", $cfg["mysqlUser"], $cfg["mysqlPassword"]);
+    } catch (PDOException $e) {
+        print "    <p class=\"aviso\">Error: No puede conectarse con la base de datos. {$e->getMessage()}</p>\n";
+        exit;
+    } finally {
+        $tmp->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
+        $tmp->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+        return $tmp;
+    }
 }
 
 // MYSQL: FUNCIÓN DE BORRADO Y CREACIÓN DE TABLA

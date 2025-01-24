@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @author Escriba aquí su nombre
+ * @author Daniel Martinez Colomer
  */
 ?>
 <!DOCTYPE html>
@@ -19,13 +19,22 @@
   <main>
 <?php
 
-print "  <p class=\"aviso\">Ejercicio incompleto</p>\n";
+include "biblioteca.php";
+
+$pdo = conectaDb();
+borraTodo();
+insertaRegistro('Daniel', 'Martinez');
+cuentaRegistros();
+muestraRegistros();
+modificaRegistro('1', 'Dani', 'Martinez');
+$id = [1 => "on"];
+borraRegistros($id);
 
 ?>
   </main>
 
   <footer>
-    <p>Escriba aquí su nombre</p>
+    <p>Daniel Martinez Colomer</p>
   </footer>
 </body>
 </html>
