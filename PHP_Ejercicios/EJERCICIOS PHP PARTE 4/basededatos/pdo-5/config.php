@@ -4,7 +4,7 @@
  * @author Daniel Martinez Colomer
  */
 // Motor
- $cfg["dbMotor"] = SQLITE;
+ $cfg["dbMotor"] = MYSQL;
 
  // Fichero SQLITE
  $cfg["sqliteDatabase"] = "/tmp/db.sqlite5";
@@ -15,3 +15,6 @@
  $cfg["mysqlPassword"] = "lamp_password";
  $cfg["mysqlDatabase"] = "lamp_db";
 
+ // Otros
+$cfg["tablaPersonasTamNombre"]    = 40;
+$cfg["tablaPersonasTamApellidos"] = 60;

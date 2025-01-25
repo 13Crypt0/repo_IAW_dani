@@ -19,7 +19,15 @@
   <main>
 <?php
 
-print "  <p class=\"aviso\">Ejercicio incompleto</p>\n";
+require_once "biblioteca.php";
+$pdo = conectaDb();
+borraTodo();
+insertaRegistro("Daniel", "Martinez");
+cuentaRegistros();
+muestraRegistros();
+modificaRegistro('1', 'Dani', 'Martinez');
+$id = [1 => "on"];
+borraRegistros($id);
 
 ?>
   </main>

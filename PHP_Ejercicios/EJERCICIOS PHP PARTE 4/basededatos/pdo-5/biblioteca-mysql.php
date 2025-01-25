@@ -8,6 +8,9 @@
 
 include "config.php";
 
+
+// CONEXION BASE DE DATOS
+
 function conectaDb()
 {
     global $cfg;
@@ -28,9 +31,11 @@ function conectaDb()
 
 // MYSQL: FUNCIÓN DE BORRADO Y CREACIÓN DE TABLA
 
+
 function borraTodo()
 {
-    global $cfg, $pdo;
+    global $pdo, $cfg;
+
     $consulta = "DROP DATABASE IF EXISTS $cfg[mysqlDatabase]";
 
     if (!$pdo->query($consulta)) {
@@ -41,94 +46,36 @@ function borraTodo()
     print "\n";
 
     $consulta = "CREATE DATABASE $cfg[mysqlDatabase]
-             CHARACTER SET utf8mb4
-             COLLATE utf8mb4_unicode_ci";
+                 CHARACTER SET utf8mb4
+                 COLLATE utf8mb4_unicode_ci";
 
     if (!$pdo->query($consulta)) {
-            print "    <p class=\"aviso\">Error al crear la base de datos. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
+        print "    <p class=\"aviso\">Error al crear la base de datos. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
+    } else {
+        print "    <p>Base de datos creada correctamente.</p>\n";
+        print "\n";
+
+        $consulta = "USE $cfg[mysqlDatabase]";
+
+        if (!$pdo->query($consulta)) {
+            print "    <p class=\"aviso\">Error en la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
         } else {
-            print "    <p>Base de datos creada correctamente.</p>\n";
+            print "    <p>Base de datos seleccionada correctamente.</p>\n";
             print "\n";
+
+            $consulta = "CREATE TABLE $cfg[tablaPersonas] (
+                         id INTEGER UNSIGNED AUTO_INCREMENT,
+                         nombre VARCHAR($cfg[tablaPersonasTamNombre]),
+                         apellidos VARCHAR($cfg[tablaPersonasTamApellidos]),
+                         PRIMARY KEY(id)
+                         )";
+
+            if (!$pdo->query($consulta)) {
+                print "    <p class=\"aviso\">Error al crear la tabla. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
+            } else {
+                print "    <p>Tabla creada correctamente.</p>\n";
+            }
         }
-
-    $consulta = "USE $cfg[mysqlDatabase]";
-
-    if (!$pdo->query($consulta)) {
-        print "    <p class=\"aviso\">Error en la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } else {
-        print "    <p>Base de datos seleccionada correctamente.</p>\n";
-        print "\n";
-    }
-
-
-    $consulta = "CREATE TABLE $cfg[tablaPersonas] (
-                id INTEGER UNSIGNED AUTO_INCREMENT,
-                nombre VARCHAR($cfg[tablaPersonasTamNombre]),
-                apellidos VARCHAR($cfg[tablaPersonasTamApellidos]),
-                PRIMARY KEY(id)
-                )";
-
-    if (!$pdo->query($consulta)) {
-        print "    <p class=\"aviso\">Error al crear la tabla. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } else {
-        print "    <p>Tabla creada correctamente.</p>\n";
-    }
-}
-// FUNCIÓN DE INSERCIÓN DE REGISTRO
-
-function insertaRegistro($nombre, $apellidos)
-{
-    global $cfg, $pdo;
-    $consulta = "INSERT INTO $cfg[tablaPersonas]
-                (nombre, apellidos)
-                VALUES (:nombre, :apellidos)";
-
-    $resultado = $pdo->prepare($consulta);
-    if (!$resultado) {
-        print "    <p class=\"aviso\">Error al preparar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } elseif (!$resultado->execute([":nombre" => $nombre, ":apellidos" => $apellidos])) {
-        print "    <p class=\"aviso\">Error al ejecutar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } else {
-        print "    <p>Registro creado correctamente.</p>\n";
-        print "\n";
-    }
-}
-
-// FUNCIÓN DE CONTEO DE REGISTROS
-
-function cuentaRegistros()
-{
-    global $cfg, $pdo;
-    $consulta = "SELECT COUNT(*) FROM $cfg[tablaPersonas]";
-
-    $resultado = $pdo->query($consulta);
-    if (!$resultado) {
-        print "    <p class=\"aviso\">Error en la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } else {
-        print "    <p>La tabla contiene {$resultado->fetchColumn()} registro(s).</p>\n";
-        print "\n";
-    }
-}
-
-// FUNCIÓN DE SELECCIÓN DE TODOS LOS REGISTROS
-
-function muestraRegistros()
-{
-    global $cfg, $pdo;
-    $consulta = "SELECT * FROM $cfg[tablaPersonas]";
-
-    $resultado = $pdo->query($consulta);
-    if (!$resultado) {
-        print "    <p class=\"aviso\">Error en la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } else {
-        print "    <p><strong>Registro(s) obtenido(s)</strong></p>\n";
-        print "    <ul>\n";
-        while ($registro = $resultado->fetch()) {
-            print "      <li>$registro[id] - $registro[nombre] - $registro[apellidos]</li>\n";
-            print "\n";
-        }
-        print "    </ul>\n";
-        print "\n";
     }
 }
 
